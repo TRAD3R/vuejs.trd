@@ -8,13 +8,34 @@
 
     <div id="app">
         <h1>Hello {{message}}!</h1>
+
+        <input type="text" v-model="message"> <!-- директива для изменения переменной message -->
+
+        <pre>
+            {{ $data }}  <!-- во VueJS 2 нет фильтров -->
+        </pre>
+
+        <div class="student">
+            <h1>{{ sayHello() }}</h1>
+            <p>Age: {{ age }}</p>
+            <p>IF Statment: {{ isStudent ? "I am a student" : "I am not a student"}}</p>
+        </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script>
         new Vue({
             el: "#app",  // обязательный элемент
-            data: {
-                message: "VueJS"
+            data: { // для создания полей
+                message: "VueJS",
+                age: 32,
+                isStudent: false,
+                name: "Valery"
+            },
+            methods: {
+                sayHello: function() {
+                    return 'Hello. My name is ' + this.name;
+                }
             }
         });
     </script>
