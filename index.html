@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Learn VueJS</title>
@@ -7,19 +7,10 @@
 <body>
 
     <div id="app">
-        <h1>Hello {{message}}!</h1>
-
-        <input type="text" v-model="message"> <!-- директива для изменения переменной message -->
-
-        <pre>
-            {{ $data }}  <!-- во VueJS 2 нет фильтров -->
-        </pre>
-
-        <div class="student">
-            <h1>{{ sayHello() }}</h1>
-            <p>Age: {{ age }}</p>
-            <p>IF Statment: {{ isStudent ? "I am a student" : "I am not a student"}}</p>
-        </div>
+        <!--: - директива, которая используется для привязки свойств к атрибутам (сокращение от  "v-bind:")-->
+        <a :href="url">Google</a>
+        <!--v-html - директива, которая используется для вставки HTML кода-->
+        <h2 v-html="markup"></h2>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -27,15 +18,8 @@
         new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания полей
-                message: "VueJS",
-                age: 32,
-                isStudent: false,
-                name: "Valery"
-            },
-            methods: {
-                sayHello: function() {
-                    return 'Hello. My name is ' + this.name;
-                }
+                url: "https://google.com",
+                markup: "<a href='https://google.com'>Google</a>"
             }
         });
     </script>
