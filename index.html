@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn VueJS</title>
+</head>
+<body>
+
+    <div id="app">
+        <h1>Hello {{message}}!</h1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",  // обязательный элемент
+            data: {
+                message: "VueJS"
+            }
+        });
+    </script>
+</body>
+</html>
