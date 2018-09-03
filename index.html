@@ -7,32 +7,17 @@
 <body>
 
     <div id="app">
-        <!--v-if/v-else - директива, которая показывает элемент при указанном условии-->
-        <!--v-show - аналог v-if, только элемент не удаляется, а скрывается через display: none-->
-        <!--v-else-if - директива, которая заменяет switch в шаблоне-->
-        <h2 v-if="isVisible">Visible</h2>
-        <h2 v-else>Not visible</h2>
-        <button @click="toggle">Toggle</button>
+        <!--v-for - директива - аналог for in в JS (внутри можно использовать in или of)-->
+        <ul>
+            <li v-for="(flower, index) of flowers">{{index + 1}}) {{flower.name}} {{flower.age}}</li>
+        </ul>
 
         <hr>
 
-        <h2 v-if="char === 'a'">A</h2>
-        <h2 v-else-if="char === 'b'">B</h2>
-        <h2 v-else-if="char === 'c'">C</h2>
-        <h2 v-else>Not matched</h2>
+        <ul>
+            <li v-for="(value, key, index) in person"><em>{{index}}</em> {{key}}: {{value}}</li>
+        </ul>
 
-        <input type="text" v-model="char">
-
-        <hr>
-
-        <template v-if="isVisible">
-            <h2>I am a title</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, porro.</p>
-        </template>
-        <tempalte v-else>
-            <h2 style="color: crimson">I am a title</h2>
-            <p style="color: crimson">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, porro.</p>
-        </tempalte>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -40,11 +25,19 @@
         new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-                isVisible: true,
-                char: 'a'
+                flowers: [
+                    { name: 'Rose', age: 1 },
+                    {name: 'Tulip', age: 2},
+                    {name: 'Chamber', age: 4},
+                    {name: 'Dazy', age: 9}
+                    ],
+                person: {
+                    name: 'Val',
+                    age: 32,
+                    job: 'Reboon'
+                }
             },
             methods: {
-                toggle: function(){this.isVisible = !this.isVisible}
             }
         });
     </script>
