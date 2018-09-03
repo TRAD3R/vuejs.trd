@@ -7,9 +7,11 @@
 <body>
 
     <div id="app">
-        <!--@ - директива для отслеживания событий (сокращение от v-on:)-->
-        <!--в качестве модификаторов могут быть клавиши, что указывает на срабатывание функции после нажания на эту клавишу-->
-        <input type="text" @keyup.enter.up.s="onKey">
+        <!--v-model - директива для работы с value-->
+        <!--lazy - модификатор который указывает, что изменять переменную только после потери фокуса-->
+        <input type="text" v-model.lazy="initValue">
+
+        <h2>{{initValue}}</h2>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -17,10 +19,10 @@
         new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-
+                initValue: "Первоначальное состояние"
             },
             methods: {
-                onKey: ({target}) => alert(target.value)
+
             }
         });
     </script>
