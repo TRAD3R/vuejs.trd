@@ -7,11 +7,32 @@
 <body>
 
     <div id="app">
-        <!--v-model - директива для работы с value-->
-        <!--lazy - модификатор который указывает, что изменять переменную только после потери фокуса-->
-        <input type="text" v-model.lazy="initValue">
+        <!--v-if/v-else - директива, которая показывает элемент при указанном условии-->
+        <!--v-show - аналог v-if, только элемент не удаляется, а скрывается через display: none-->
+        <!--v-else-if - директива, которая заменяет switch в шаблоне-->
+        <h2 v-if="isVisible">Visible</h2>
+        <h2 v-else>Not visible</h2>
+        <button @click="toggle">Toggle</button>
 
-        <h2>{{initValue}}</h2>
+        <hr>
+
+        <h2 v-if="char === 'a'">A</h2>
+        <h2 v-else-if="char === 'b'">B</h2>
+        <h2 v-else-if="char === 'c'">C</h2>
+        <h2 v-else>Not matched</h2>
+
+        <input type="text" v-model="char">
+
+        <hr>
+
+        <template v-if="isVisible">
+            <h2>I am a title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, porro.</p>
+        </template>
+        <tempalte v-else>
+            <h2 style="color: crimson">I am a title</h2>
+            <p style="color: crimson">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, porro.</p>
+        </tempalte>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -19,10 +40,11 @@
         new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-                initValue: "Первоначальное состояние"
+                isVisible: true,
+                char: 'a'
             },
             methods: {
-
+                toggle: function(){this.isVisible = !this.isVisible}
             }
         });
     </script>
