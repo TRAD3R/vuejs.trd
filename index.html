@@ -7,10 +7,11 @@
 <body>
 
     <div id="app">
-        <h2 @mouseover="onHover">Счетчик: {{ counter }}</h2>
+        <h2 @mouseover="onHover">{{ title }}: {{ counter }}</h2>
         <!--@ - директива для отслеживания событий (сокращение от v-on:)-->
-        <button @click="addCounter">+</button>
-        <button @click="takeCounter">-</button>
+        <!--$event - зарезервированное имя для нативного элемента (событие)-->
+        <button @click="addCounter(5, 'Изменено на 5', $event)">+5</button>
+        <button @click="addCounter(10, 'Изменено на 10', $event)">+10</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -18,11 +19,16 @@
         new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-                counter: 0
+                counter: 0,
+                title: 'Счетчик'
             },
             methods: {
-                addCounter: function() {this.counter++},
-                takeCounter: function() {this.counter--},
+                addCounter: function(num, str, {target}) {
+                    this.counter += num;
+                    this.title = str;
+                    target.style.color = (num === 5) ? 'green' : 'red';
+                },
+                takeCounter: function(num, str) {this.counter--},
                 onHover: function ({target}) {
                     target.style.color = 'red';
                 }
