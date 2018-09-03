@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Learn VueJS</title>
@@ -7,19 +7,25 @@
 <body>
 
     <div id="app">
-        <!--: - директива, которая используется для привязки свойств к атрибутам (сокращение от  "v-bind:")-->
-        <a :href="url">Google</a>
-        <!--v-html - директива, которая используется для вставки HTML кода-->
-        <h2 v-html="markup"></h2>
+        <h2 @mouseover="onHover">Счетчик: {{ counter }}</h2>
+        <!--@ - директива для отслеживания событий (сокращение от v-on:)-->
+        <button @click="addCounter">+</button>
+        <button @click="takeCounter">-</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script>
         new Vue({
             el: "#app",  // обязательный элемент
-            data: { // для создания полей
-                url: "https://google.com",
-                markup: "<a href='https://google.com'>Google</a>"
+            data: { // для создания свойств
+                counter: 0
+            },
+            methods: {
+                addCounter: function() {this.counter++},
+                takeCounter: function() {this.counter--},
+                onHover: function ({target}) {
+                    target.style.color = 'red';
+                }
             }
         });
     </script>
