@@ -7,25 +7,9 @@
 <body>
 
     <div id="app">
-        <h2 @mouseover="onHover">{{ title }}: {{ counter }}</h2>
         <!--@ - директива для отслеживания событий (сокращение от v-on:)-->
-        <!--$event - зарезервированное имя для нативного элемента (событие)-->
-        <button @click="addCounter(5, 'Изменено на 5', $event)">+5</button>
-        <button @click="addCounter(10, 'Изменено на 10', $event)">+10</button>
-
-        <hr>
-
-        <!--используются модификаторы событий
-
-            .stop       => stopPropagation() - отменяет дальнейшее всплытие
-            .prevent    => preventDefault() - отмена события по умолчанию
-            .capture    =>                  - нацелено на внутренний элемент. Обрабатывается до обработки элементом
-            .self       =>                  - событие обрабатывается, только если вызвано самим элементом
-            .once       =>                  - событие сработает только 1 раз
-            .passive    =>                  - выполняет функцию после выполнения самого события
-
-        -->
-        <a href="https://google.com" target="_blank" @click.prevent>Google</a>
+        <!--в качестве модификаторов могут быть клавиши, что указывает на срабатывание функции после нажания на эту клавишу-->
+        <input type="text" @keyup.enter.up.s="onKey">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -33,19 +17,10 @@
         new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-                counter: 0,
-                title: 'Счетчик'
+
             },
             methods: {
-                addCounter: function(num, str, {target}) {
-                    this.counter += num;
-                    this.title = str;
-                    target.style.color = (num === 5) ? 'green' : 'red';
-                },
-                takeCounter: function(num, str) {this.counter--},
-                onHover: function ({target}) {
-                    target.style.color = 'red';
-                }
+                onKey: ({target}) => alert(target.value)
             }
         });
     </script>
