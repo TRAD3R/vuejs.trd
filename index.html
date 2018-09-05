@@ -15,17 +15,20 @@
 <body>
 
     <div id="app">
-        <!--вариант 1
-        <button :class="{'large': fontSize, 'border': border}">{{title}}</button>-->
 
-        <!--вариант 2-->
-        <button :class="getCss">{{title}}</button>
+        <button :class="getCss" :style="styles">{{title}}</button>
         
         <input type="checkbox" v-model="fontSize">
         <label for="">Font size</label>
 
         <input type="checkbox" v-model="border">
         <label for="">Border</label>
+
+        <input type="text" v-model="bgColor">
+        <label for="">Background color</label>
+
+        <input type="range" v-model="range">
+        <label for="">Range</label>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -35,14 +38,22 @@
             data: { // для создания свойств
                 title: 'Test button',
                 fontSize: false,
-                border: false
+                border: false,
+                bgColor: 'pink',
+                range: 20
             },
             computed: {
-                getCss: function () {
+                getCss () {
                     return {
                         'large': this.fontSize,
                         'border': this.border,
 
+                    }
+                },
+                styles() {
+                    return {
+                        'background': this.bgColor,
+                        'margin-left': this.range+'%'
                     }
                 }
             }
