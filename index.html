@@ -7,16 +7,11 @@
 <body>
 
     <div id="app">
-        <!--v-for - директива - аналог for in в JS (внутри можно использовать in или of)-->
-        <ul>
-            <li v-for="(flower, index) of flowers">{{index + 1}}) {{flower.name}} {{flower.age}}</li>
-        </ul>
-
-        <hr>
-
-        <ul>
-            <li v-for="(value, key, index) in person"><em>{{index}}</em> {{key}}: {{value}}</li>
-        </ul>
+        <form action="">
+            <span>{{count}} / 30</span>
+            <textarea v-model="textValue"></textarea>
+            <button v-if="count <= 30">Send</button>
+        </form>
 
     </div>
 
@@ -25,17 +20,15 @@
         new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-                flowers: [
-                    { name: 'Rose', age: 1 },
-                    {name: 'Tulip', age: 2},
-                    {name: 'Chamber', age: 4},
-                    {name: 'Dazy', age: 9}
-                    ],
-                person: {
-                    name: 'Val',
-                    age: 32,
-                    job: 'Reboon'
+                textValue: ''
+            },
+            computed: { // методы срабатывают только при изменении свойств, с которыми они связаны
+                count: function () {
+                    return this.textValue.length;
                 }
+            },
+            watch: {    // используется для отслеживания изменений свойств
+                textValue: value => console.log(value)  // value получается из this.textValue после его изменения
             },
             methods: {
             }
