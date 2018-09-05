@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <title>Learn VueJS</title>
 </head>
+<style>
+    .large{
+        font-size: 50px;
+    }
+    .border{
+        border: 1px solid red;
+    }
+</style>
 <body>
 
     <div id="app">
+        <!--вариант 1
+        <button :class="{'large': fontSize, 'border': border}">{{title}}</button>-->
 
+        <!--вариант 2-->
+        <button :class="getCss">{{title}}</button>
+        
+        <input type="checkbox" v-model="fontSize">
+        <label for="">Font size</label>
+
+        <input type="checkbox" v-model="border">
+        <label for="">Border</label>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -15,9 +33,20 @@
         var vue1 = new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-                title: 'Заголовок 1'
+                title: 'Test button',
+                fontSize: false,
+                border: false
             },
-            template: '<h1>{{title}}</h1>'  // вставка HTML кода в весь элемент
+            computed: {
+                getCss: function () {
+                    return {
+                        'large': this.fontSize,
+                        'border': this.border,
+
+                    }
+                }
+            }
+
         });
     </script>
 </body>
