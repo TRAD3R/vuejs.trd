@@ -7,22 +7,34 @@
 <body>
 
     <div id="app">
-        <!--ref - референция для непосредственного обращения к DOM элементам (в кавычках указывается любое название для связи)-->
-        <h1 ref="heading">{{title}}</h1>
+        <h1>{{title}}</h1>
+    </div>
+
+    <div id="app2">
+        <h1>{{title}}</h1>
         <button @click="changeTitle">Изменить заголовок</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script>
-        new Vue({
+        var vue1 = new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-                title: 'Заголовок'
+                title: 'Заголовок 1'
+            },
+            methods: {
+
+            }
+        });
+
+        new Vue({
+            el: "#app2",  // обязательный элемент
+            data: { // для создания свойств
+                title: 'Заголовок 2'
             },
             methods: {
                 changeTitle: function () {
-                    this.title = 'Новый заголовок';
-                    this.$refs.heading.style.color = 'pink';
+                    vue1.title = "Заголовок изменен из app 2"
                 }
             }
         });
