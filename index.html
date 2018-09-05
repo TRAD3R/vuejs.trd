@@ -7,12 +7,9 @@
 <body>
 
     <div id="app">
-        <form action="">
-            <span>{{count}} / 30</span>
-            <textarea v-model="textValue"></textarea>
-            <button v-if="count <= 30">Send</button>
-        </form>
-
+        <!--ref - референция для непосредственного обращения к DOM элементам (в кавычках указывается любое название для связи)-->
+        <h1 ref="heading">{{title}}</h1>
+        <button @click="changeTitle">Изменить заголовок</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -20,17 +17,13 @@
         new Vue({
             el: "#app",  // обязательный элемент
             data: { // для создания свойств
-                textValue: ''
-            },
-            computed: { // методы срабатывают только при изменении свойств, с которыми они связаны
-                count: function () {
-                    return this.textValue.length;
-                }
-            },
-            watch: {    // используется для отслеживания изменений свойств
-                textValue: value => console.log(value)  // value получается из this.textValue после его изменения
+                title: 'Заголовок'
             },
             methods: {
+                changeTitle: function () {
+                    this.title = 'Новый заголовок';
+                    this.$refs.heading.style.color = 'pink';
+                }
             }
         });
     </script>
