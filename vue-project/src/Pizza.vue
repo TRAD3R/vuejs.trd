@@ -8,12 +8,7 @@
 <script>
     export default {
         name: "Pizza",
-        data(){
-            return{
-                pizzaName: "Деревенская",
-                pizzaPrice: 320
-            }
-        }
+        props: ['pizzaName', 'pizzaPrice']
     }
 </script>
 

@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <h2>{{msg}}</h2>
-    <app-pizza></app-pizza>
+      <!--Передача параметров дочерним компонентам (обязательно нужно забайндидь)-->
+    <app-pizza :pizzaName="name" :pizzaPrice="price"></app-pizza>
   </div>
 </template>
 
@@ -10,7 +11,9 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+        msg: 'Title для App.vue',
+        name: "Маргарита",
+        price: 300
     }
   }
 }
