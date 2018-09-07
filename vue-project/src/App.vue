@@ -1,7 +1,15 @@
 <template xmlns:v-colored="http://www.w3.org/1999/xhtml">
+    <!-- через "|" указываются фильтры (пользовательские функции, которые возвращают строку)-->
     <div>
-        <!--:background и :color - аргументы, которые передаются в директиву-->
-        <h2 v-colored:background="'red'" v-colored:color="'green'">{{title}}</h2>
+        <h2>{{title}}</h2>
+
+        <h2>{{title | upperCase}}</h2>
+
+        <h2>{{title | snippet}}</h2>
+
+        <h2>{{title | snippet | upperCase}}</h2>
+
+
     </div>
 </template>
 
@@ -9,7 +17,12 @@
     export default {
         data(){
             return {
-                title: 'Изучаем директивы',
+                title: 'Изучаем фильтры',
+            }
+        },
+        filters: {
+            upperCase(value) {
+                return value.toUpperCase();
             }
         }
     }

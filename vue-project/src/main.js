@@ -1,10 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import MyDirective from './color'
 
-export const eventEmitter = new Vue(); // позволяет пользоваться элементами, встроенными в экземпляр Vue для создания шины событий
-
-Vue.directive('colored', MyDirective);
+Vue.filter('snippet', value => value.slice(0, 10));
 new Vue({
     el: '#app',
     render: h => h(App)
