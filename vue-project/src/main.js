@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import ListNames from './ListNames'
-import ListMixin from './ListMixin'
+import router from './routes'
+import VueRouter from 'vue-router'
 
-Vue.component('list-name', ListNames);
-Vue.mixin(ListMixin)
-
+Vue.use(VueRouter)
 new Vue({
     el: '#app',
-    render: h => h(App)
+    render: h => h(App),
+    router
 });
