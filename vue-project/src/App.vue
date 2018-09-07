@@ -3,12 +3,11 @@
     <div>
         <h2>{{title}}</h2>
 
-        <h2>{{title | upperCase}}</h2>
+        <input type="text" v-model="search">
 
-        <h2>{{title | snippet}}</h2>
-
-        <h2>{{title | snippet | upperCase}}</h2>
-
+        <ul>
+            <li v-for="name of filtered" :key="name">{{name}}</li>
+        </ul>
 
     </div>
 </template>
@@ -18,6 +17,13 @@
         data(){
             return {
                 title: 'Изучаем фильтры',
+                search: '',
+                names: ['Ivan', "Oleg", "Anna"]
+            }
+        },
+        computed: {
+            filtered: function () {
+                return this.names.filter(name => name.toLowerCase().indexOf(this.search.toLowerCase()) !== -1);
             }
         },
         filters: {
