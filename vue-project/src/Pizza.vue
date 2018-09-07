@@ -1,17 +1,30 @@
 <template>
     <div>
-        <h2>Pizza name: {{pizzaName}}</h2>
-        <p>Pizza price: {{pizzaPrice}}</p>
+        <h2>{{pizzaName}} / {{reverse}}</h2>
+        <p>{{pizzaPrice}}</p>
+        <button @click="changeName">Change name</button>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Pizza",
-        props: ['pizzaName', 'pizzaPrice']
+        props: ['pizzaName', 'pizzaPrice'],
+        data() {
+            return {
+                pizzaName: 'Маргарита',
+                pizzaPrice: 300
+            }
+        },
+        methods: {
+            changeName: function () {
+                this.pizzaName = 'Гавайская';
+                this.$emit('nameChanged', this.pizzaName);
+            }
+        },
+        computed: {
+            reverse: function () {
+                return this.pizzaName.split('').reverse().join('');
+            }
+        }
     }
 </script>
-
-<style scoped>
-
-</style>
