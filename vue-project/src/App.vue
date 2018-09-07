@@ -1,6 +1,7 @@
-<template>
+<template xmlns:v-colored="http://www.w3.org/1999/xhtml">
     <div>
-        <h2 v-colored>{{title}}</h2>
+        <!--:background и :color - аргументы, которые передаются в директиву-->
+        <h2 v-colored:background="'red'" v-colored:color="'green'">{{title}}</h2>
     </div>
 </template>
 

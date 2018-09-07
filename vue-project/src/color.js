@@ -5,6 +5,7 @@ export default {
     vnode (readonly) - виртуальное дерево, где хранится директива
      */
     bind(el, bindings, vnode){
-        el.style.color = 'green';
+        const args = bindings.arg;
+        el.style[args] = bindings.value;
     }
 }
