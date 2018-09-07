@@ -3,12 +3,13 @@
         <h2>{{pizzaName}} / {{reverse}}</h2>
         <p>{{pizzaPrice}}</p>
         <button @click="changeName">Change name</button>
+        <button @click="changeFunc">Change from parent</button>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['pizzaName', 'pizzaPrice'],
+        props: ['pizzaName', 'pizzaPrice', 'changeFunc'],
         data() {
             return {
                 pizzaName: 'Маргарита',
